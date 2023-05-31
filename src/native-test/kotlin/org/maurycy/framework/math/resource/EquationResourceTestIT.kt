@@ -1,7 +1,6 @@
-package org.maurycy.framework.reosurce
+package org.maurycy.framework.math.resource
 
 import io.quarkus.test.junit.QuarkusIntegrationTest
-import org.maurycy.framework.math.resource.EquationResourceTest
 
 @QuarkusIntegrationTest
 class EquationResourceTestIT: EquationResourceTest()
