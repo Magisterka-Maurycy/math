@@ -14,14 +14,17 @@ import org.maurycy.framework.math.service.EquationService
 @Path("/equation")
 class EquationResource(
     private val equationService: EquationService
-){
+) {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user", "admin")
     suspend fun solve(aInput: EquationInput?): EquationAnswer {
-        return aInput?.let { equationService.solve(aInput = it) } ?: throw EquationInputNullException()
+        if (aInput == null) {
+            throw EquationInputNullException()
+        }
+        return equationService.solve(aInput)
     }
 
 
