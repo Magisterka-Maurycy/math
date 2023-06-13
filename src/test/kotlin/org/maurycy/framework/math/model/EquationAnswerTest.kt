@@ -1,8 +1,10 @@
 package org.maurycy.framework.math.model
 
+import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Test
 import org.wildfly.common.Assert
 
+@QuarkusTest
 class EquationAnswerTest {
     private val solution1 = doubleArrayOf(5.0,4.0,3.0)
     private val solution2 = doubleArrayOf(5.0,4.0,3.0)
