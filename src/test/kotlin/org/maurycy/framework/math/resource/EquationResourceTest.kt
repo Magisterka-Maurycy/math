@@ -15,11 +15,11 @@ import org.maurycy.framework.math.model.EquationInput
 @QuarkusTest
 @TestHTTPEndpoint(EquationResource::class)
 class EquationResourceTest {
-    val coefficient1 = doubleArrayOf(1.0, 0.0)
-    val coefficient2 = doubleArrayOf(0.0, 1.0)
+    val coefficient1 = listOf(1.0, 0.0)
+    val coefficient2 = listOf(0.0, 1.0)
 
-    val singularCoefficient1 = doubleArrayOf(3.0, 6.0)
-    val singularCoefficient2 = doubleArrayOf(2.0, 4.0)
+    val singularCoefficient1 = listOf(3.0, 6.0)
+    val singularCoefficient2 = listOf(2.0, 4.0)
 
     @Test
     @TestSecurity(user = "testUser", roles = ["admin","user"])
@@ -44,8 +44,8 @@ class EquationResourceTest {
             .contentType(MediaType.APPLICATION_JSON)
             .body(
                 EquationInput(
-                    coefficients = arrayOf(coefficient1),
-                    constants = arrayOf(1.0, 1.0),
+                    coefficients = listOf(coefficient1),
+                    constants = listOf(1.0, 1.0),
                     decomposition = decomposition
                 )
             )
@@ -84,8 +84,8 @@ class EquationResourceTest {
             .contentType(MediaType.APPLICATION_JSON)
             .body(
                 EquationInput(
-                    coefficients = arrayOf(singularCoefficient1, singularCoefficient2),
-                    constants = arrayOf(1.0, 1.0),
+                    coefficients = listOf(singularCoefficient1, singularCoefficient2),
+                    constants = listOf(1.0, 1.0),
                     decomposition = decomposition
                 )
             )
@@ -126,8 +126,8 @@ class EquationResourceTest {
             .contentType(MediaType.APPLICATION_JSON)
             .body(
                 EquationInput(
-                    coefficients = arrayOf(coefficient1, coefficient2),
-                    constants = arrayOf(1.0, 1.0),
+                    coefficients = listOf(coefficient1, coefficient2),
+                    constants = listOf(1.0, 1.0),
                     decomposition = decomposition
                 )
             )
