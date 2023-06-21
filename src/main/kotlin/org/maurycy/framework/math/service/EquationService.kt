@@ -19,41 +19,37 @@ import org.maurycy.framework.math.model.EquationInput
 class EquationService {
 
     fun solve(aInput: EquationInput): EquationAnswer {
+
         val solver = decompositionSolver(aInput)
-        val solution = solver.solve(ArrayRealVector(aInput.constants.toTypedArray()))
-        val solutionList = solution.toArray().toList()
-        return EquationAnswer(solutionList)
+        return EquationAnswer(solver.solve(ArrayRealVector(aInput.constants)).toArray())
     }
 
-    private fun decompositionSolver(aInput: EquationInput): DecompositionSolver {
-        val coef = aInput.coefficients.map {
-            it.toTypedArray().toDoubleArray()
-        }.toTypedArray()
-        val matrix = Array2DRowRealMatrix(coef)
-        return when (aInput.decomposition) {
+    private fun decompositionSolver(aInput: EquationInput): DecompositionSolver =
+        when (aInput.decomposition) {
             Decomposition.LUDecomposition -> {
-                LUDecomposition(matrix).solver
+                LUDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
             }
 
             Decomposition.CholeskyDecomposition -> {
-                CholeskyDecomposition(matrix).solver
+                CholeskyDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
             }
 
             Decomposition.EigenDecomposition -> {
-                EigenDecomposition(matrix).solver
+                EigenDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+
             }
 
             Decomposition.QRDecomposition -> {
-                QRDecomposition(matrix).solver
+                QRDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+
             }
 
             Decomposition.RRQRDecomposition -> {
-                RRQRDecomposition(matrix).solver
+                RRQRDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
             }
 
             Decomposition.SingularValueDecomposition -> {
-                SingularValueDecomposition(matrix).solver
+                SingularValueDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
             }
         }
-    }
 }
