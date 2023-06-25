@@ -21,7 +21,7 @@ class EquationService {
     fun solve(aInput: EquationInput): EquationAnswer {
 
         val solver = decompositionSolver(aInput)
-        return EquationAnswer(solver.solve(ArrayRealVector(aInput.constants)).toArray())
+        return EquationAnswer(solver.solve(ArrayRealVector(aInput.constants)).toArray().toList())
     }
 
     private fun decompositionSolver(aInput: EquationInput): DecompositionSolver =

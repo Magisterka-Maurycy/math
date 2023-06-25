@@ -6,9 +6,9 @@ import org.wildfly.common.Assert
 
 @QuarkusTest
 class EquationAnswerTest {
-    private val solution1 = doubleArrayOf(5.0,4.0,3.0)
-    private val solution2 = doubleArrayOf(5.0,4.0,3.0)
-    private val solution3 = doubleArrayOf(5.0,4.0,3.1)
+    private val solution1 = listOf(5.0,4.0,3.0)
+    private val solution2 = listOf(5.0,4.0,3.0)
+    private val solution3 = listOf(5.0,4.0,3.1)
     @Test
     fun testEquals1() {
     Assert.assertTrue(EquationAnswer(solution1) == EquationAnswer(solution1))
