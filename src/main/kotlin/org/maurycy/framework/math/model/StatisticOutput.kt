@@ -4,10 +4,10 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
 
 data class StatisticOutput(
     val mean: Double,
-    val standardDeviation: Double,// = stats.standardDeviation
-    val median: Double,// = stats.getPercentile(50.0)
-    val max: Double,// = stats.max
-    val min: Double,// = stats.min
+    val standardDeviation: Double,
+    val median: Double,
+    val max: Double,
+    val min: Double,
     val skewness: Double,
     val kurtosis: Double
 ) {
