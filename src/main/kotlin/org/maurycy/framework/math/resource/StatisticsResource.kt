@@ -19,7 +19,7 @@ class StatisticsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user", "admin")
-    fun getDescriptiveStatistics(x: StatisticInput): StatisticOutput {
+    suspend fun getDescriptiveStatistics(x: StatisticInput): StatisticOutput {
         val stats = DescriptiveStatistics()
         x.inputArray.forEach { value ->
             stats.addValue(value)
