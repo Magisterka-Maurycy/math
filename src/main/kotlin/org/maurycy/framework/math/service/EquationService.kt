@@ -21,35 +21,40 @@ class EquationService {
     fun solve(aInput: EquationInput): EquationAnswer {
 
         val solver = decompositionSolver(aInput)
-        return EquationAnswer(solver.solve(ArrayRealVector(aInput.constants)).toArray().toList())
+        return EquationAnswer(solver.solve(ArrayRealVector(aInput.constants.toTypedArray())).toArray().toList())
     }
 
-    private fun decompositionSolver(aInput: EquationInput): DecompositionSolver =
-        when (aInput.decomposition) {
+    private fun decompositionSolver(aInput: EquationInput): DecompositionSolver {
+        val coef = aInput.coefficients.map {
+            it.toDoubleArray()
+        }.toTypedArray()
+       return when (aInput.decomposition) {
+
             Decomposition.LUDecomposition -> {
-                LUDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                LUDecomposition(Array2DRowRealMatrix(coef)).solver
             }
 
             Decomposition.CholeskyDecomposition -> {
-                CholeskyDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                CholeskyDecomposition(Array2DRowRealMatrix(coef)).solver
             }
 
             Decomposition.EigenDecomposition -> {
-                EigenDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                EigenDecomposition(Array2DRowRealMatrix(coef)).solver
 
             }
 
             Decomposition.QRDecomposition -> {
-                QRDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                QRDecomposition(Array2DRowRealMatrix(coef)).solver
 
             }
 
             Decomposition.RRQRDecomposition -> {
-                RRQRDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                RRQRDecomposition(Array2DRowRealMatrix(coef)).solver
             }
 
             Decomposition.SingularValueDecomposition -> {
-                SingularValueDecomposition(Array2DRowRealMatrix(aInput.coefficients)).solver
+                SingularValueDecomposition(Array2DRowRealMatrix(coef)).solver
             }
         }
+    }
 }
